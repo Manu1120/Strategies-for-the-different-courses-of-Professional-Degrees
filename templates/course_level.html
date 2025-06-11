@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Level Selection</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url("{{ url_for('static', filename='images/pexels-polina-zimmerman-3747576.jpg') }}") no-repeat center center/cover;
+    }
+
+    .container {
+      background: #fff;
+      color: #000;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 26px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+      accent-color: #ffdd57;
+    }
+
+    button {
+      background-color: #ffdd57;
+      color: #333;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffbb33;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Select Course Level</h2>
+    <form id="courseForm">
+      <label>
+        <input type="radio" name="level" value="undergraduate"> Under Graduate
+      </label>
+      <label>
+        <input type="radio" name="level" value="postgraduate"> Post Graduate
+      </label><br>
+      <button type="button" onclick="redirect()">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    // JavaScript to handle redirection
+    function redirect() {
+      const selectedLevel = document.querySelector('input[name="level"]:checked');
+      if (!selectedLevel) {
+        alert('Please select a course level!');
+        return;
+      }
+
+      // Redirect based on the selected value
+      if (selectedLevel.value === 'undergraduate') {
+        window.location.href = 'index.html'; // Redirect to undergraduate page
+      } else if (selectedLevel.value === 'postgraduate') {
+        window.location.href = 'indexpg.html'; // Redirect to postgraduate page
+      }
+    }
+  </script>
+</body>
+</html>

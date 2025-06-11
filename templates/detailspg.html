@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course_name }} - Course Details</title>
+    <style>
+        /* Resetting margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and overall page styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url("{{ url_for('static', filename='images/lib.jpeg') }}") no-repeat center center/cover;
+            background-attachment: fixed;
+            color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container for course details */
+        .course-details {
+            background-color: rgba(0, 0, 0, 0.6); /* Transparent background */
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Title styling */
+        h1 {
+            font-size: 36px;
+            color: #ff7043;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Image styling */
+        .course-details img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section headings styling */
+        h3 {
+            font-size: 24px;
+            color: #f3eadb;
+            margin: 20px 0 10px;
+        }
+
+        /* Paragraph styling */
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #d4d4d4;
+        }
+
+        /* List styling for core subjects */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        ul li {
+            font-size: 18px;
+            color: #ffcc80;
+            margin: 5px 0;
+        }
+
+        /* Link styling */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: #ff7043;
+            color: #fff;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        a:hover {
+            background-color: #ff5722;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design for small screens */
+        @media (max-width: 600px) {
+            .course-details {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            ul li {
+                font-size: 16px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="course-details">
+        <h1>{{ course_name }}</h1>
+        <img src="{{ course['image'] }}" alt="Course Image">
+        <p>{{ course['introduction'] }}</p>
+        
+        <h3>Core Subjects</h3>
+        <ul>
+            {% for subject in course['coreSubjects'] %}
+                <li>{{ subject }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Career Opportunities</h3>
+        <p>{{ course['careerOpportunities'] }}</p>
+
+        <h3>Average Salary</h3>
+        <p>{{ course['averageSalary'] }}</p>
+
+        <a href="{{ course['analysisPage'] }}">Go to Analysis Page</a>
+    </div>
+</body>
+</html>

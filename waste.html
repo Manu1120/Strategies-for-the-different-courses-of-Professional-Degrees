@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Your Engineering Discipline</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Time New Roman', sans-serif;
+      color: #f6eeee;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: url("{{ url_for('static', filename='images/pexels-polina-zimmerman-3747576.jpg') }}") no-repeat center center/cover;
+      background-size: cover;
+    }
+
+    /* Heading Styling */
+    h1 {
+      font-size: 50px;
+      font-weight: bold;
+      color: #ff7357;
+      text-shadow: 2px 2px 5px rgba(18, 6, 180, 0.7);
+      margin: 20px 0 40px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Three columns */
+      grid-gap: 50px; /* Space between the cards */
+      padding: 30px;
+      max-width: 1200px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .course-card {
+      background-color: #ebe1e7;
+      color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .course-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    .course-card label {
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    /* Submit Button Styling */
+    button {
+      background: linear-gradient(135deg, #ffdd57, #ffbb33); /* Gradient effect */
+      color: #fff;
+      font-size: 25px;
+      font-weight: bold;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 80px; /* Rounded button */
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      margin: 40px 0 20px;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #ffbb33, #ffdd57); /* Reverse gradient on hover */
+      transform: translateY(-5px); /* Slight raise */
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    button:active {
+      transform: translateY(2px); /* Small push down effect when clicked */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Back Button Styling */
+    .back-button {
+      background-color: #ff5a5f;
+      color: #f83f3f;
+      font-size: 25px;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+    }
+
+    .back-button:hover {
+      background-color: #ff2f40;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        grid-template-columns: 1fr; /* One column for smaller screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Back Button -->
+  <button class="back-button" onclick="window.history.back()">Go Back</button>
+
+  <!-- Main Heading -->
+  <h1>Select Your Engineering Discipline</h1>
+
+  <div class="container">
+    <!-- Course Cards with Anchor Tags -->
+    <a href="details.html" onclick="localStorage.setItem('selectedDiscipline', 'Computer Science & Engineering');">
+      <div class="course-card">
+        <label>
+          <img src="https://via.placeholder.com/80?text=CSE" alt="CSE">
+          Computer Science & Engineering
+        </label>
+      </div>
+    </a>
+    
+    <a href="{{ url_for('details') }}" onclick="localStorage.setItem('selectedDiscipline', 'Computer Science & Engineering (Data Science)');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=DS" alt="Data Science">
+            Computer Science & Engineering (Data Science)
+          </label>
+        </div>
+      </a>
+  
+      <a href="{{ url_for('details') }}" onclick="localStorage.setItem('selectedDiscipline', 'Computer Science & Design');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=Design" alt="Design">
+            Computer Science & Design
+          </label>
+        </div>
+      </a>
+  
+      <a href="{{ url_for('details') }}" onclick="localStorage.setItem('selectedDiscipline', 'Computer Science & Business System');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=Business">
+            Computer Science & Business System
+          </label>
+        </div>
+      </a>
+  
+      <a href="{{ url_for('details') }}" onclick="localStorage.setItem('selectedDiscipline', 'Information Science');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=IS">
+            Information Science
+          </label>
+        </div>
+      </a>
+  
+      <a href="{{ url_for('details') }}" onclick="localStorage.setItem('selectedDiscipline', 'Artificial Intelligence And Machine Learning');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=AI">
+            Artificial Intelligence And Machine Learning
+          </label>
+        </div>
+      </a>
+  
+      <a href="{{ url_for('details') }}" onclick="localStorage.setItem('selectedDiscipline', 'Mechanical Engineering');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=ME">
+            Mechanical Engineering
+          </label>
+        </div>
+      </a>
+  
+      <a href="{{ url_for('details') }}" onclick="localStorage.setItem('selectedDiscipline', 'Civil Engineering');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=Civil">
+            Civil Engineering
+          </label>
+        </div>
+      </a>
+  
+      <a href="{{ url_for('deatils') }}" onclick="localStorage.setItem('selectedDiscipline', 'Textile Technology');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=Textile">
+            Textile Technology
+          </label>
+        </div>
+      </a>
+  
+      <a href="{{ url_for('details') }}" onclick="localStorage.setItem('selectedDiscipline', 'Chemical Engineering');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=Chem">
+            Chemical Engineering
+          </label>
+        </div>
+      </a>
+  
+      <a href="{{ url_for('details') }}" onclick="localStorage.setItem('selectedDiscipline', 'Electrical & Electronic Engineering');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=EE">
+            Electrical & Electronic Engineering
+          </label>
+        </div>
+      </a>
+  
+      <a href="{{ url_for('details') }}" onclick="localStorage.setItem('selectedDiscipline', 'Electronics & Communication Engineering');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=ECE">
+            Electronics & Communication Engineering
+          </label>
+        </div>
+      </a>
+  
+      <a href="{{ url_for('details') }}" onclick="localStorage.setItem('selectedDiscipline', 'Aerospace Engineering');">
+        <div class="course-card">
+          <label>
+            <img src="https://via.placeholder.com/80?text=AS">
+            Aerospace Engineering
+          </label>
+        </div>
+      </a>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Details</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: url("{{ url_for('static', filename='images/pexels-polina-zimmerman-3747576.jpg') }}") no-repeat center center/cover;
+      color: #f8a7a7;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .details-container {
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 800px;
+      width: 90%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin: 15px 0;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    ul {
+      margin: 15px 0;
+      padding-left: 20px;
+      text-align: left;
+    }
+
+    ul li {
+      margin: 10px 0;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ffdd57;
+      color: #333;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #ffbb33;
+      transform: scale(1.05);
+    }
+
+    /* Styling for Analysis Board Button */
+    .analysis-board-button {
+      background: #007bff;
+      color: #fff;
+      font-size: 16px;
+      margin-top: 10px;
+      padding: 12px 25px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .analysis-board-button:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="details-container">
+    <h1 id="course-name">Loading...</h1>
+    <img id="course-image" src="" alt="Course Image">
+    <p id="course-introduction"></p>
+    <h2>Core Subjects</h2>
+    <ul id="core-subjects"></ul>
+    <h2>Career Opportunities</h2>
+    <p id="career-opportunities"></p>
+    <h2>Average Salary</h2>
+    <p id="average-salary"></p>
+    <button onclick="goBack()">Go Back</button>
+    <button class="analysis-board-button" id="analysis-board-button">Go to Analysis Board</button>
+  </div>
+
+  <script>
+    // Define the course data
+    const courseData = {
+      "Computer Science & Engineering": {
+        image: "https://via.placeholder.com/600x300?text=CSE",
+        introduction: "Computer Science & Engineering focuses on designing, developing, and maintaining software and hardware systems.",
+        coreSubjects: ["Programming Languages", "Data Structures", "Operating Systems", "Computer Networks", "Software Engineering"],
+        careerOpportunities: "Software Developer, Systems Analyst, Network Engineer, AI Specialist, IT Consultant.",
+        averageSalary: "$60,000 - $120,000 per year",
+        analysisPage: "dashboardCS.html"
+      },
+      "Computer Science & Engineering (Data Science)": {
+        image: "https://via.placeholder.com/600x300?text=Data+Science",
+        introduction: "This specialization focuses on data analysis, machine learning, and building predictive models.",
+        coreSubjects: ["Machine Learning", "Big Data Analytics", "Database Management", "Data Visualization", "Statistics"],
+        careerOpportunities: "Data Scientist, Data Analyst, Business Analyst, Machine Learning Engineer.",
+        averageSalary: "$70,000 - $140,000 per year",
+        analysisPage: "dashboardCSDS.html"
+      },
+     "Computer Science & Design": {
+        image: "https://via.placeholder.com/600x300?text=CS+Design",
+        introduction: "Combining technical computer science skills with design principles to create user-centric systems.",
+        coreSubjects: ["Human-Computer Interaction", "UI/UX Design", "Visual Design", "Web Development", "Multimedia Computing"],
+        careerOpportunities: "UI/UX Designer, Web Developer, Digital Product Designer.",
+        averageSalary: "$55,000 - $100,000 per year",
+        analysisPage:"dashboardCS&D.html"
+      },
+      "Computer Science & Business System": {
+        image: "https://via.placeholder.com/600x300?text=CSBS",
+        introduction: "This program blends computer science and business knowledge to develop software systems for enterprises.",
+        coreSubjects: ["Business Analytics", "Enterprise Resource Planning", "Database Systems", "Software Engineering"],
+        careerOpportunities: "Business Analyst, ERP Consultant, IT Manager, Product Manager.",
+        averageSalary: "$65,000 - $110,000 per year",
+        analysisPage: "dashboardCSBS.html"
+      },
+      "Information Science": {
+        image: "https://via.placeholder.com/600x300?text=IS",
+        introduction: "Information Science focuses on managing and processing information for effective decision-making.",
+        coreSubjects: ["Information Retrieval", "Database Management", "Data Structures", "Software Design"],
+        careerOpportunities: "Data Analyst, IT Consultant, System Administrator.",
+        averageSalary: "$55,000 - $100,000 per year",
+        analysisPage: "dashboardIS.html"
+      },
+      "Artificial Intelligence And Machine Learning": {
+        image: "https://via.placeholder.com/600x300?text=AI+ML",
+        introduction: "Specialization in building systems capable of intelligent behavior and learning.",
+        coreSubjects: ["Deep Learning", "Natural Language Processing", "Robotics", "Mathematical Foundations"],
+        careerOpportunities: "AI Engineer, Data Scientist, Robotics Engineer.",
+        averageSalary: "$75,000 - $150,000 per year",
+        analysisPage: "dashboardAI.html"
+      },
+      "Mechanical Engineering": {
+        image: "https://via.placeholder.com/600x300?text=ME",
+        introduction: "Mechanical Engineering deals with the design, manufacturing, and operation of machinery.",
+        coreSubjects: ["Thermodynamics", "Fluid Mechanics", "Machine Design", "CAD/CAM"],
+        careerOpportunities: "Mechanical Engineer, Automotive Engineer, Robotics Engineer.",
+        averageSalary: "$50,000 - $90,000 per year",
+        analysisPage: "dashboardMech.html"
+      },
+      "Civil Engineering": {
+        image: "https://via.placeholder.com/600x300?text=CE",
+        introduction: "Civil Engineering involves designing, constructing, and maintaining infrastructure projects.",
+        coreSubjects: ["Structural Analysis", "Construction Materials", "Hydraulics", "Geotechnical Engineering"],
+        careerOpportunities: "Civil Engineer, Structural Engineer, Project Manager.",
+        averageSalary: "$50,000 - $85,000 per year",
+        analysisPage: "dashboardCivil.html"
+      },
+      "Textile Technology": {
+        image: "https://via.placeholder.com/600x300?text=Textile",
+        introduction: "Textile Technology focuses on fiber production, fabric design, and the creation of textile-based products.",
+        coreSubjects: ["Polymer Chemistry", "Fiber Technology", "Textile Manufacturing"],
+        careerOpportunities: "Textile Engineer, Quality Control Manager.",
+        averageSalary: "$40,000 - $70,000 per year",
+        analysisPage:"dashboardTXT.html"
+      },
+      "Chemical Engineering": {
+        image: "https://via.placeholder.com/600x300?text=Chemical",
+        introduction: "Chemical Engineering deals with the development and operation of chemical processes.",
+        coreSubjects: ["Thermodynamics", "Process Design", "Chemical Kinetics"],
+        careerOpportunities: "Chemical Engineer, Process Engineer.",
+        averageSalary: "$55,000 - $95,000 per year",
+        analysisPage: "dashboardChem.html"
+      },
+      "Electrical & Electronic Engineering": {
+        image: "https://via.placeholder.com/600x300?text=EEE",
+        introduction: "Electrical & Electronic Engineering focuses on designing and maintaining electrical systems.",
+        coreSubjects: ["Circuit Design", "Power Systems", "Control Systems"],
+        careerOpportunities: "Electrical Engineer, Power Systems Engineer.",
+        averageSalary: "$55,000 - $100,000 per year",
+        analysisPage: "dashboardEEE.html"
+      },
+      "Electronics & Communication Engineering": {
+        image: "https://via.placeholder.com/600x300?text=ECE",
+        introduction: "This branch focuses on electronic devices, circuits, and communication systems.",
+        coreSubjects: ["Digital Signal Processing", "Embedded Systems"],
+        careerOpportunities: "Electronics Engineer.",
+        averageSalary: "$60,000 - $110,000 per year",
+        analysisPage: "dashboardEC.html"
+      },
+      "Aerospace Engineering": {
+        image: "https://via.placeholder.com/600x300?text=Aerospace",
+        introduction: "Aerospace Engineering deals with aircraft and spacecraft development.",
+        coreSubjects: ["Aerodynamics", "Propulsion Systems"],
+        careerOpportunities: "Aerospace Engineer.",
+        averageSalary: "$70,000 - $130,000 per year",
+        analysisPage: "dashboardAero.html"
+      }
+    };
+
+
+    // Load course details dynamically
+    const selectedDiscipline = localStorage.getItem('selectedDiscipline');
+
+    if (selectedDiscipline && courseData[selectedDiscipline]) {
+      const course = courseData[selectedDiscipline];
+      document.getElementById('course-name').textContent = selectedDiscipline;
+      document.getElementById('course-image').src = course.image;
+      document.getElementById('course-introduction').textContent = course.introduction;
+
+      const coreSubjectsList = document.getElementById('core-subjects');
+      coreSubjectsList.innerHTML = '';
+      course.coreSubjects.forEach(subject => {
+        const li = document.createElement('li');
+        li.textContent = subject;
+        coreSubjectsList.appendChild(li);
+      });
+
+      document.getElementById('career-opportunities').textContent = course.careerOpportunities;
+      document.getElementById('average-salary').textContent = course.averageSalary;
+
+      // Update the Analysis Board button functionality
+      const analysisButton = document.getElementById('analysis-board-button');
+      analysisButton.onclick = function() {
+        window.location.href = course.analysisPage;
+      };
+    } else {
+      document.getElementById('course-name').textContent = "Course not found!";
+      document.querySelector('.details-container').innerHTML += "<p>Please go back and select a valid course.</p>";
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Details</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: url("{{ url_for('static', filename='images/pexels-polina-zimmerman-3747576.jpg') }}") no-repeat center center/cover;
+      color: #f8a7a7;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .details-container {
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 800px;
+      width: 90%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin: 15px 0;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    ul {
+      margin: 15px 0;
+      padding-left: 20px;
+      text-align: left;
+    }
+
+    ul li {
+      margin: 10px 0;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ffdd57;
+      color: #333;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #ffbb33;
+      transform: scale(1.05);
+    }
+
+    /* Styling for Analysis Board Button */
+    .analysis-board-button {
+      background: #007bff;
+      color: #fff;
+      font-size: 16px;
+      margin-top: 10px;
+      padding: 12px 25px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .analysis-board-button:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="details-container">
+    <h1 id="course-name">Loading...</h1>
+    <img id="course-image" src="" alt="Course Image">
+    <p id="course-introduction"></p>
+    <h2>Core Subjects</h2>
+    <ul id="core-subjects"></ul>
+    <h2>Career Opportunities</h2>
+    <p id="career-opportunities"></p>
+    <h2>Average Salary</h2>
+    <p id="average-salary"></p>
+    <button onclick="goBack()">Go Back</button>
+    <button class="analysis-board-button" id="analysis-board-button">Go to Analysis Board</button>
+  </div>
+
+  <script>
+    // Function to get the value of a query parameter by name
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Define the course data
+    const courseData = {
+      "Computer Science & Engineering": {
+        image: "https://via.placeholder.com/600x300?text=CSE",
+        introduction: "Computer Science & Engineering focuses on designing, developing, and maintaining software and hardware systems.",
+        coreSubjects: ["Programming Languages", "Data Structures", "Operating Systems", "Computer Networks", "Software Engineering"],
+        careerOpportunities: "Software Developer, Systems Analyst, Network Engineer, AI Specialist, IT Consultant.",
+        averageSalary: "$60,000 - $120,000 per year",
+        analysisPage: "dashboardCS.html"
+      },
+      "Computer Science & Engineering (Data Science)": {
+        image: "https://via.placeholder.com/600x300?text=Data+Science",
+        introduction: "This specialization focuses on data analysis, machine learning, and building predictive models.",
+        coreSubjects: ["Machine Learning", "Big Data Analytics", "Database Management", "Data Visualization", "Statistics"],
+        careerOpportunities: "Data Scientist, Data Analyst, Business Analyst, Machine Learning Engineer.",
+        averageSalary: "$70,000 - $140,000 per year",
+        analysisPage: "dashboardCSDS.html"
+      },
+     // Continue with other disciplines...
+    };
+
+    // Get the discipline from the URL query parameter
+    const selectedDiscipline = getQueryParam('discipline');
+
+    // Check if the discipline exists in courseData
+    if (selectedDiscipline && courseData[selectedDiscipline]) {
+      const course = courseData[selectedDiscipline];
+
+      // Update the page content with the course details
+      document.getElementById('course-name').textContent = selectedDiscipline;
+      document.getElementById('course-image').src = course.image;
+      document.getElementById('course-introduction').textContent = course.introduction;
+
+      const coreSubjectsList = document.getElementById('core-subjects');
+      coreSubjectsList.innerHTML = '';
+      course.coreSubjects.forEach(subject => {
+        const li = document.createElement('li');
+        li.textContent = subject;
+        coreSubjectsList.appendChild(li);
+      });
+
+      document.getElementById('career-opportunities').textContent = course.careerOpportunities;
+      document.getElementById('average-salary').textContent = course.averageSalary;
+
+      // Update the Analysis Board button functionality
+      const analysisButton = document.getElementById('analysis-board-button');
+      analysisButton.onclick = function() {
+        window.location.href = course.analysisPage;
+      };
+    } else {
+      // If course not found, show an error message
+      document.getElementById('course-name').textContent = "Course not found!";
+      document.getElementById('course-details').innerHTML += "<p>Please go back and select a valid course.</p>";
+    }
+
+    // Function to navigate back to the previous page
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+from flask import Flask, jsonify, render_template, request, redirect, url_for, flash
+
+app = Flask(__name__)
+app.secret_key = "your_secret_key"  # Required for flash messages
+
+# Route for the welcome page
+@app.route("/")
+def home():
+    return render_template("welcome.html")
+        
+# Route for the login page
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        
+        # Dummy authentication logic
+        if username == "admin" and password == "password":  # Replace with actual logic
+            flash("Login successful!", "success")
+            return redirect(url_for("course_level"))
+        else:
+            flash("Invalid username or password. Please try again.", "error")
+            return render_template("login.html")
+    return render_template("login.html")
+
+ # Route for the Course Level selection page
+@app.route("/course_level", methods=["GET", "POST"])
+def course_level():
+    if request.method == "POST":
+        selected_level = request.form.get("Level")
+        if selected_level == "Under Graduate":
+            return redirect(url_for("undergraduate"))
+        elif selected_level == "Post Graduate":
+            return redirect(url_for("postgraduate"))
+        else:
+            flash("Please select a course level.", "error")
+    return render_template("course_level.html")
+
+
+# Route for undergraduate page
+@app.route("/index.html")
+def undergraduate_page():
+    return render_template("index.html")
+
+# Route for postgraduate page
+@app.route("/indexpg.html")
+def postgraduate_page():
+    return render_template("indexpg.html")
+
+
+
+# Define your course data
+course_data = {
+    "Computer Science & Engineering": {
+        "image": "https://via.placeholder.com/600x300?text=CSE",
+        "introduction": "Computer Science & Engineering focuses on designing, developing, and maintaining software and hardware systems.",
+        "coreSubjects": ["Programming Languages", "Data Structures", "Operating Systems", "Computer Networks", "Software Engineering"],
+        "careerOpportunities": "Software Developer, Systems Analyst, Network Engineer, AI Specialist, IT Consultant.",
+        "averageSalary": "$60,000 - $120,000 per year",
+        "analysisPage": "dashboardCS.html"
+    },
+   "Computer Science & Engineering (Data Science)": {
+        "image": "https://via.placeholder.com/600x300?text=Data+Science",
+        "introduction": "This specialization focuses on data analysis, machine learning, and building predictive models.",
+        "coreSubjects": ["Machine Learning", "Big Data Analytics", "Database Management", "Data Visualization", "Statistics"],
+        "careerOpportnities": "Data Scientist, Data Analyst, Business Analyst, Machine Learning Engineer.",
+        "averageSalary": "$70,000 - $140,000 per year",
+        "analysisPage": "dashboardCSDS.html"
+      },
+     "Computer Science & Design": {
+        "image": "https://via.placeholder.com/600x300?text=CS+Design",
+        "introduction": "Combining technical computer science skills with design principles to create user-centric systems.",
+        "coreSubjects": ["Human-Computer Interaction", "UI/UX Design", "Visual Design", "Web Development", "Multimedia Computing"],
+        "careerOpportunities": "UI/UX Designer, Web Developer, Digital Product Designer.",
+        "averageSalary": "$55,000 - $100,000 per year",
+        "analysisPage":"dashboardCS&D.html"
+      },
+      "Computer Science & Business System": {
+        "image": "https://via.placeholder.com/600x300?text=CSBS",
+        "introduction": "This program blends computer science and business knowledge to develop software systems for enterprises.",
+        "coreSubjects": ["Business Analytics", "Enterprise Resource Planning", "Database Systems", "Software Engineering"],
+        "careerOpportunities": "Business Analyst, ERP Consultant, IT Manager, Product Manager.",
+        "averageSalary": "$65,000 - $110,000 per year",
+        "analysisPage": "dashboardCSBS.html"
+      },
+      "Information Science": {
+        "image": "https://via.placeholder.com/600x300?text=IS",
+        "introduction": "Information Science focuses on managing and processing information for effective decision-making.",
+        "coreSubjects": ["Information Retrieval", "Database Management", "Data Structures", "Software Design"],
+        "careerOpportunities": "Data Analyst, IT Consultant, System Administrator.",
+        "averageSalary": "$55,000 - $100,000 per year",
+        "analysisPage": "dashboardIS.html"
+      },
+      "Artificial Intelligence And Machine Learning": {
+        "image": "https://via.placeholder.com/600x300?text=AI+ML",
+        "introduction": "Specialization in building systems capable of intelligent behavior and learning.",
+        "coreSubjects": ["Deep Learning", "Natural Language Processing", "Robotics", "Mathematical Foundations"],
+        "careerOpportunities": "AI Engineer, Data Scientist, Robotics Engineer.",
+        "averageSalary": "$75,000 - $150,000 per year",
+        "analysisPage": "dashboardAI.html"
+      },
+      "Mechanical Engineering": {
+        "image": "https://via.placeholder.com/600x300?text=ME",
+        "introduction": "Mechanical Engineering deals with the design, manufacturing, and operation of machinery.",
+        "coreSubjects": ["Thermodynamics", "Fluid Mechanics", "Machine Design", "CAD/CAM"],
+        "careerOpportunities": "Mechanical Engineer, Automotive Engineer, Robotics Engineer.",
+        "averageSalary": "$50,000 - $90,000 per year",
+        "analysisPage": "dashboardMech.html"
+      },
+      "Civil Engineering": {
+        "image": "https://via.placeholder.com/600x300?text=CE",
+        "introduction": "Civil Engineering involves designing, constructing, and maintaining infrastructure projects.",
+        "coreSubjects": ["Structural Analysis", "Construction Materials", "Hydraulics", "Geotechnical Engineering"],
+        "careerOpportunities": "Civil Engineer, Structural Engineer, Project Manager.",
+        "averageSalary": "$50,000 - $85,000 per year",
+        "analysisPage": "dashboardCivil.html"
+      },
+      "Textile Technology": {
+        "image": "https://via.placeholder.com/600x300?text=Textile",
+        "introduction": "Textile Technology focuses on fiber production, fabric design, and the creation of textile-based products.",
+        "coreSubjects": ["Polymer Chemistry", "Fiber Technology", "Textile Manufacturing"],
+        "careerOpportunities": "Textile Engineer, Quality Control Manager.",
+        "averageSalary": "$40,000 - $70,000 per year",
+        "analysisPage":"dashboardTXT.html"
+      },
+      "Chemical Engineering": {
+        "image": "https://via.placeholder.com/600x300?text=Chemical",
+        "introduction": "Chemical Engineering deals with the development and operation of chemical processes.",
+        "coreSubjects": ["Thermodynamics", "Process Design", "Chemical Kinetics"],
+        "careerOpportunities": "Chemical Engineer, Process Engineer.",
+        "averageSalary": "$55,000 - $95,000 per year",
+        "analysisPage": "dashboardChem.html"
+      },
+      "Electrical & Electronic Engineering": {
+        "image": "https://via.placeholder.com/600x300?text=EEE",
+        "introduction": "Electrical & Electronic Engineering focuses on designing and maintaining electrical systems.",
+        "coreSubjects": ["Circuit Design", "Power Systems", "Control Systems"],
+        "careerOpportunities": "Electrical Engineer, Power Systems Engineer.",
+        "averageSalary": "$55,000 - $100,000 per year",
+        "analysisPage": "dashboardEEE.html"
+      },
+      "Electronics & Communication Engineering": {
+        "image": "https://via.placeholder.com/600x300?text=ECE",
+        "introduction": "This branch focuses on electronic devices, circuits, and communication systems.",
+        "coreSubjects": ["Digital Signal Processing", "Embedded Systems"],
+        "careerOpportunities": "Electronics Engineer.",
+        "averageSalary": "$60,000 - $110,000 per year",
+        "analysisPage": "dashboardEC.html"
+      },
+      "Aerospace Engineering": {
+        "image": "https://via.placeholder.com/600x300?text=Aerospace",
+        "introduction": "Aerospace Engineering deals with aircraft and spacecraft development.",
+        "coreSubjects": ["Aerodynamics", "Propulsion Systems"],
+        "careerOpportunities": "Aerospace Engineer.",
+        "averageSalary": "$70,000 - $130,000 per year",
+        "analysisPage": "dashboardAero.html"
+      }
+
+}
+
+# Route for the details page
+@app.route('/details')
+def course_details():
+    discipline = request.args.get('discipline')
+
+    if discipline and discipline in course_data:
+        course = course_data[discipline]
+        return render_template('details.html', course_name=discipline, course=course)
+    else:
+        return "Course not found!", 404
+    
+
+    
+@app.route('/details')
+def course_details():
+    discipline = request.args.get('discipline')
+    print(f"Discipline: {discipline}")  # Debug line
+
+    if discipline and discipline in course_data:
+        course = course_data[discipline]
+        print(f"Course: {course}")  # Debug line
+        return render_template('details.html', course_name=discipline, course=course)
+    else:
+        return "Course not found!", 404
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+
+
+
+
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Your Engineering Discipline</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Times New Roman', sans-serif;
+      color: #f6eeee;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: url("{{ url_for('static', filename='images/pexels-polina-zimmerman-3747576.jpg') }}") no-repeat center center/cover;
+    }
+
+    /* Heading Styling */
+    h1 {
+      font-size: 50px;
+      font-weight: bold;
+      color: #ff7357;
+      text-shadow: 2px 2px 5px rgba(18, 6, 180, 0.7);
+      margin: 20px 0 40px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 50px;
+      padding: 30px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .course-card {
+      background-color: #ebe1e7;
+      color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .course-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    .course-card label {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    /* Submit Button Styling */
+    button {
+      background: linear-gradient(135deg, #ffdd57, #ffbb33);
+      color: #fff;
+      font-size: 25px;
+      font-weight: bold;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 80px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      margin: 40px 0 20px;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #ffbb33, #ffdd57);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    button:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Back Button Styling */
+    .back-button {
+      background-color: #ff5a5f;
+      color: #fff;
+      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+    }
+
+    .back-button:hover {
+      background-color: #ff2f40;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Back Button -->
+  <button class="back-button" onclick="window.history.back()">Go Back</button>
+
+  <!-- Main Heading -->
+  <h1>Select Your Engineering Discipline</h1>
+
+  <div class="container">
+    <!-- Course Cards with dynamic URL -->
+    <a href="{{ url_for('details', discipline='Computer%20Science%20%26%20Engineering') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CSE.jpg') }}" alt="CSE">
+          Computer Science & Engineering
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Computer%20Science%20%26%20Engineering%20(Data%20Science)') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/DS.jpg') }}" alt="Data Science">
+          Computer Science & Engineering (Data Science)
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Computer%20Science%20%26%20Design') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CSD.webp') }}" alt="Design">
+          Computer Science & Design
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Computer%20Science%20%26%20Business%20System') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CSBS.jpg') }}" alt="CSBS">
+          Computer Science & Business System
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Information%20Science') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/IS.jpg') }}" alt="Information Science">
+          Information Science
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Artificial%20Intelligence%20and%20Machine%20Learning') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/AIML.jpg') }}" alt="AI & ML">
+          Artificial Intelligence & Machine Learning
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Mechanical%20Engineering') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/MECH.jpg') }}" alt="Mechanical">
+          Mechanical Engineering
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Civil%20Engineering') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CV.jpg') }}" alt="Civil">
+          Civil Engineering
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Textile%20Technology') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/TEXTILE.jpg') }}" alt="Textile">
+          Textile Technology
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Chemical%20Engineering') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CHEM.jpg') }}" alt="Chemical">
+          Chemical Engineering
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Electrical%20and%20Electronic%20Engineering') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/EEE.jpg') }}" alt="Electrical">
+          Electrical & Electronic Engineering
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Electronics%20and%20Communication%20Engineering') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/EEC.jpg') }}" alt="Electronics">
+          Electronics & Communication Engineering
+        </label>
+      </div>
+    </a>
+    <a href="{{ url_for('details', discipline='Aerospace%20Engineering') }}">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/AERO.jpg') }}" alt="Aerospace">
+          Aerospace Engineering
+        </label>
+      </div>
+    </a>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Your Engineering Discipline</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Times New Roman', sans-serif;
+      color: #f6eeee;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: url("{{ url_for('static', filename='images/pexels-polina-zimmerman-3747576.jpg') }}") no-repeat center center/cover;
+    }
+
+    /* Heading Styling */
+    h1 {
+      font-size: 50px;
+      font-weight: bold;
+      color: #ff7357;
+      text-shadow: 2px 2px 5px rgba(18, 6, 180, 0.7);
+      margin: 20px 0 40px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 50px;
+      padding: 30px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .course-card {
+      background-color: #ebe1e7;
+      color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .course-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    .course-card label {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    /* Submit Button Styling */
+    button {
+      background: linear-gradient(135deg, #ffdd57, #ffbb33);
+      color: #fff;
+      font-size: 25px;
+      font-weight: bold;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 80px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      margin: 40px 0 20px;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #ffbb33, #ffdd57);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    button:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Back Button Styling */
+    .back-button {
+      background-color: #ff5a5f;
+      color: #fff;
+      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+    }
+
+    .back-button:hover {
+      background-color: #ff2f40;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Back Button -->
+  <button class="back-button" onclick="window.history.back()">Go Back</button>
+
+  <!-- Main Heading -->
+  <h1>Select Your Engineering Discipline</h1>
+
+  <div class="container">
+    <!-- Course Cards with query URL -->
+    <a href="/details?discipline=Computer%20Science%20%26%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CSE.jpg') }}" alt="CSE">
+          Computer Science & Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Computer%20Science%20%26%20Engineering%20(Data%20Science)">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/DS.jpg') }}" alt="Data Science">
+          Computer Science & Engineering (Data Science)
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Computer%20Science%20%26%20Design">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CSD.webp') }}" alt="Design">
+          Computer Science & Design
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Computer%20Science%20%26%20Business%20System">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CSBS.jpg') }}" alt="CSBS">
+          Computer Science & Business System
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Information%20Science">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/IS.jpg') }}" alt="Information Science">
+          Information Science
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Artificial%20Intelligence%20and%20Machine%20Learning">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/AIML.jpg') }}" alt="AI & ML">
+          Artificial Intelligence & Machine Learning
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Mechanical%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/MECH.jpg') }}" alt="Mechanical">
+          Mechanical Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Civil%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CV.jpg') }}" alt="Civil">
+          Civil Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Textile%20Technology">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/TEXTILE.jpg') }}" alt="Textile">
+          Textile Technology
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Chemical%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CHEM.jpg') }}" alt="Chemical">
+          Chemical Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Electrical%20and%20Electronic%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/EEE.jpg') }}" alt="Electrical">
+          Electrical & Electronic Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Electronics%20and%20Communication%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/EEC.jpg') }}" alt="Electronics">
+          Electronics & Communication Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Aerospace%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/AERO.jpg') }}" alt="Aerospace">
+          Aerospace Engineering
+        </label>
+      </div>
+    </a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Your Engineering Discipline</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Times New Roman', sans-serif;
+      color: #f6eeee;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: url("{{ url_for('static', filename='images/pexels-polina-zimmerman-3747576.jpg') }}") no-repeat center center/cover;
+    }
+
+    /* Heading Styling */
+    h1 {
+      font-size: 50px;
+      font-weight: bold;
+      color: #ff7357;
+      text-shadow: 2px 2px 5px rgba(18, 6, 180, 0.7);
+      margin: 20px 0 40px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 50px;
+      padding: 30px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .course-card {
+      background-color: #ebe1e7;
+      color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .course-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    .course-card label {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    /* Submit Button Styling */
+    button {
+      background: linear-gradient(135deg, #ffdd57, #ffbb33);
+      color: #fff;
+      font-size: 25px;
+      font-weight: bold;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 80px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      margin: 40px 0 20px;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #ffbb33, #ffdd57);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    button:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Back Button Styling */
+    .back-button {
+      background-color: #ff5a5f;
+      color: #fff;
+      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+    }
+
+    .back-button:hover {
+      background-color: #ff2f40;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Back Button -->
+  <button class="back-button" onclick="window.history.back()">Go Back</button>
+
+  <!-- Main Heading -->
+  <h1>Select Your Engineering Discipline</h1>
+
+  <div class="container">
+    <!-- Course Cards with query URL -->
+    <a href="/details?discipline=Computer%20Science%20%26%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CSE.jpg') }}" alt="CSE">
+          Computer Science & Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Computer%20Science%20%26%20Engineering%20(Data%20Science)">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/DS.jpg') }}" alt="Data Science">
+          Computer Science & Engineering (Data Science)
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Computer%20Science%20%26%20Design">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CSD.webp') }}" alt="Design">
+          Computer Science & Design
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Computer%20Science%20%26%20Business%20System">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CSBS.jpg') }}" alt="CSBS">
+          Computer Science & Business System
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Information%20Science">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/ISE.jpg') }}" alt="Information Science">
+          Information Science
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Artificial%20Intelligence%20and%20Machine%20Learning">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/AIML.jpg') }}" alt="AI & ML">
+          Artificial Intelligence & Machine Learning
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Mechanical%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/MECH.jpg') }}" alt="Mechanical">
+          Mechanical Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Civil%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CV.jpg') }}" alt="Civil">
+          Civil Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Textile%20Technology">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/TEXTILE.jpg') }}" alt="Textile">
+          Textile Technology
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Chemical%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/CHEM.jpg') }}" alt="Chemical">
+          Chemical Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Electrical%20and%20Electronic%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/EEE.jpg') }}" alt="Electrical">
+          Electrical & Electronic Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Electronics%20and%20Communication%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/EEC.jpg') }}" alt="Electronics">
+          Electronics & Communication Engineering
+        </label>
+      </div>
+    </a>
+    <a href="/details?discipline=Aerospace%20Engineering">
+      <div class="course-card">
+        <label>
+          <img src="{{ url_for('static', filename='images/AERO.jpg') }}" alt="Aerospace">
+          Aerospace Engineering
+        </label>
+      </div>
+    </a>
+  </div>
+</body>
+</html>

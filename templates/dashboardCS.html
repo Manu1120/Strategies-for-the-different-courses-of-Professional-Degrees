@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Layout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    .section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .big-image {
+      width: 100%;
+      max-width: 800px; /* Limit the maximum width of the big image */
+      height: auto;
+      margin: 0 auto; /* Center the image */
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px; /* Space between the images */
+    }
+
+    .image-row img {
+      width: 30%; /* Each image takes up 30% of the container */
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <!-- Section for the top image -->
+  <div class="section">
+    <h2>Analysis Board</h2>
+    <img src="{{ url_for('static', filename='images/CS Dashboard.png') }}" alt="Analysis Board" class="big-image">
+  </div>
+
+  <!-- Section for the bottom images -->
+  <div class="section">
+    <h2>Predictive Analysis Board</h2>
+    <div class="image-row">
+      <img src="{{ url_for('static', filename='images/CS PLACEMENT.png') }}" alt="Image 2">
+      <img src="{{ url_for('static', filename='images/CSE ENROLL.png') }}" alt="Image 3">
+      <img src="{{ url_for('static', filename='images/CSE GPA.png') }}" alt="Image 4">
+    </div>
+  </div>
+</body>
+</html>

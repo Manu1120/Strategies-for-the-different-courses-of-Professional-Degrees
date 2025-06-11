@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Course Strategy hub</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Fullscreen Background */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: url("{{ url_for('static', filename='images/pexels-element5-1370295.jpg') }}") no-repeat center center/cover;
+      background-attachment: fixed;
+      overflow: hidden;
+    }
+
+    /* Page Container */
+    .container {
+      text-align: center;
+      color: rgb(233, 219, 219);
+      padding: 20px;
+    }
+
+    /* Main Heading */
+    h1 {
+      font-size: 5vw;
+      color: #d81616;
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.6), 
+        0 0 10px rgba(255, 255, 255, 0.6), 
+        0 0 15px rgba(255, 255, 255, 0.6), 
+        0 0 20px rgba(255, 255, 255, 0.8), 
+        0 0 25px rgba(255, 255, 255, 0.8), 
+        0 0 30px rgba(255, 255, 255, 0.9);
+      animation: glowAnimation 1.5s infinite alternate;
+    }
+
+    /* Animation for glowing effect */
+    @keyframes glowAnimation {
+      0% {
+        text-shadow: 
+          0 0 5px rgba(255, 255, 255, 0.6), 
+          0 0 10px rgba(255, 255, 255, 0.6), 
+          0 0 15px rgba(255, 255, 255, 0.6), 
+          0 0 20px rgba(255, 255, 255, 0.8), 
+          0 0 25px rgba(255, 255, 255, 0.8), 
+          0 0 30px rgba(255, 255, 255, 0.9);
+      }
+      100% {
+        text-shadow: 
+          0 0 10px rgba(255, 255, 255, 0.9), 
+          0 0 20px rgba(255, 255, 255, 1), 
+          0 0 30px rgba(255, 255, 255, 1), 
+          0 0 40px rgba(255, 255, 255, 1), 
+          0 0 50px rgba(255, 255, 255, 1), 
+          0 0 60px rgba(255, 255, 255, 1);
+      }
+    }
+
+    /* Additional Styles for Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 8vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Course Strategy hub</h1>
+    <a href="{{ url_for('login') }}">Get Started</a>
+  </div>
+</body>
+</html>
